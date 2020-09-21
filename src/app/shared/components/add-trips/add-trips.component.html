@@ -1,0 +1,91 @@
+<form [formGroup]="addTripForm" (ngSubmit)="onSubmit()">
+  {{ data | json }}
+  <h2 mat-dialog-title>Add Trip</h2>
+
+  <mat-dialog-content>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Consent Number</mat-label>
+          <input matInput formControlName="consentNumber" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>Source Location</mat-label>
+          <input matInput formControlName="source" />
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>Truck Number</mat-label>
+          <input matInput formControlName="truckNumber" />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>Transporter</mat-label>
+          <input matInput formControlName="transporter" />
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>Client</mat-label>
+          <input matInput formControlName="client" />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px" formGroupName="destination">
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>LR NO-1</mat-label>
+          <input matInput formControlName="lrNumber" />
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>Drop Location 1</mat-label>
+          <input matInput formControlName="target" />
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="primary"
+          type="button"
+          (click)="addDestinations()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <div
+        formArrayName="destinations"
+        *ngFor="let destination of destinations.controls; let i = index"
+      >
+        <div [formGroupName]="i" fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field appearance="standard" class="min-width">
+            <mat-label>LR NO-{{ i + 2 }}</mat-label>
+            <input matInput formControlName="lrNumber" />
+          </mat-form-field>
+          <mat-form-field appearance="standard" class="min-width">
+            <mat-label>Drop Location-{{ i + 2 }}</mat-label>
+            <input matInput formControlName="target" />
+          </mat-form-field>
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="removeDestination(i)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="standard" class="min-width">
+          <mat-label>SLA</mat-label>
+          <input matInput formControlName="sla" />
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button class="mat-raised-button" mat-dialog-close>Close</button>
+    <button class="mat-raised-button mat-primary" type="submit">Save</button>
+  </mat-dialog-actions>
+</form>

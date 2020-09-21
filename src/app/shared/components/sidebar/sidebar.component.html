@@ -1,0 +1,24 @@
+<mat-nav-list>
+  <div class="profile-card">
+    <div class="header">
+      <mat-icon>account_circle</mat-icon>
+      <h2>
+        Vikas Tiwari
+      </h2>
+      <h4>vikas.tiwari90@gmail.com</h4>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-list-item routerLink="/">
+    <button mat-icon-button>
+      <mat-icon>dashboard</mat-icon>
+    </button>
+    <a routerLink="/" routerLinkActive="list-item-active">Dashboard</a>
+  </mat-list-item>
+  <mat-list-item routerLink="/reports">
+    <button mat-icon-button>
+      <mat-icon>assessment</mat-icon>
+    </button>
+    <a routerLink="/reports" routerLinkActive="list-item-active">Reports</a>
+  </mat-list-item>
+</mat-nav-list>
